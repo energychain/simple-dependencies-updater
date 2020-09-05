@@ -37,7 +37,10 @@ module.exports = async function(pkgsPathName) {
             }
             console.log(`stdout: ${stdout}`);
           });
-          fs.writeFileSync(pkgsPathName,beautify(pkg, null, 2, 100));
+          setTimeout(function() {
+              fs.writeFileSync(pkgsPathName,beautify(pkg, null, 2, 100));
+              console.log("Updated:"+pkgsPathName);
+          },20000);
         }
     }
 };

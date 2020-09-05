@@ -4,6 +4,7 @@ module.exports = async function(pkgsPathName) {
       return (parts[0] * 1000000) + (parts[1] * 1000) + (parts[2] *1)
     }
     const fs = require("fs");
+    const path = require('path');
     const fileExists = async path => !!(await fs.promises.stat(path).catch(e => false));
     if((typeof pkgsPathName == 'undefined') || (pkgsPathName == null)) {
         if(await fileExists("./package.json")) {
@@ -24,6 +25,18 @@ module.exports = async function(pkgsPathName) {
             }
         }
         if(updated) {
+          const { exec } = require("child_process");
+          exec("npm update", (error, stdout, stderr) => {
+            if (error) {
+                console.log(`error: ${error.message}`);
+                return;
+            }
+            if (stderr) {
+                console.log(`stderr: ${stderr}`);
+                return;
+            }
+            console.log(`stdout: ${stdout}`);
+          });
           fs.writeFileSync(pkgsPathName,beautify(pkg, null, 2, 100));
         }
     }

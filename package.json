@@ -10,5 +10,5 @@
   "license": "Apache-2.0",
   "bugs": { "url": "https://github.com/energychain/simple-dependencies-updater/issues" },
   "homepage": "https://github.com/energychain/simple-dependencies-updater#readme",
-  "dependencies": { "axios": "0.20.0", "json-beautify": "1.1.1" }
+  "dependencies": { "axios": "0.21.2", "json-beautify": "1.1.1" }
 }
